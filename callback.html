@@ -1,7 +1,15 @@
 <!doctype html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <title>Eltama Callback</title>
+</head>
 <body>
-<h1>Authorization Successful</h1>
-<p>You can close this window.</p>
+  <p>Signing you in to Eltama...</p>
+
+  <script>
+    const appsScriptUrl = "https://script.google.com/macros/s/AKfycbwKoHK_YuzlOpdgp3u5lN0qoo9cBg7-JHIcFYb1IohQ03KhHestQ6qPuwqt8MNqISlfWA/exec";
+    window.location.href = appsScriptUrl + window.location.search;
+  </script>
 </body>
 </html>
