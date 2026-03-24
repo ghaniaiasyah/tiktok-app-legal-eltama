@@ -1,20 +1,21 @@
 <script>
-  const appsScriptUrl = "https://script.google.com/macros/s/AKfycbyT9is3DM2BL9lG4hrzdew0YtbeJESV40ld1ifz-PAv-IHvw8F-9y49WLhyra2IOx8Iww/exec";
+  const tiktokScriptUrl = "URL_WEB_APP_PROJECT_TIKTOK";
+  const linkedinScriptUrl = "URL_WEB_APP_PROJECT_LINKEDIN";
 
   const params = new URLSearchParams(window.location.search);
   const state = params.get("state") || "";
 
-  let platform = "";
+  let targetUrl = "";
 
   if (state.startsWith("tiktok|")) {
-    platform = "tiktok";
+    targetUrl = tiktokScriptUrl;
   } else if (state.startsWith("linkedin|")) {
-    platform = "linkedin";
+    targetUrl = linkedinScriptUrl;
   }
 
-  if (platform) {
-    params.set("platform", platform);
+  if (!targetUrl) {
+    document.body.innerHTML = "<p>Unknown callback state.</p>";
+  } else {
+    window.location.href = targetUrl + "?" + params.toString();
   }
-
-  window.location.href = appsScriptUrl + "?" + params.toString();
 </script>
