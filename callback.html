@@ -1,20 +1,32 @@
-<script>
-  const appScriptUrl = "https://script.google.com/macros/s/AKfycbyLSkiXVWU_JESKRLWWWp3ambBR9pReehAoIklyqwwb9t_6ol16uX1VURhn2Wjtpj6n/exec";
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <p id="msg">Processing callback...</p>
 
-  const params = new URLSearchParams(window.location.search);
-  const state = params.get("state") || "";
+  <script>
+    const appScriptUrl = "https://script.google.com/macros/s/AKfycbyLSkiXVWU_JESKRLWWWp3ambBR9pReehAoIklyqwwb9t_6ol16uX1VURhn2Wjtpj6n/exec";
 
-  let targetUrl = "";
+    const params = new URLSearchParams(window.location.search);
+    const state = params.get("state") || "";
 
-  if (state.startsWith("tiktok|")) {
-    targetUrl = appScriptUrl + "?platform=tiktok&" + params.toString();
-  } else if (state.startsWith("linkedin|")) {
-    targetUrl = appScriptUrl + "?platform=linkedin&" + params.toString();
-  }
+    let targetUrl = "";
 
-  if (!targetUrl) {
-    document.body.innerHTML = "<p>Unknown callback state.</p>";
-  } else {
-    window.location.replace(targetUrl);
-  }
-</script>
+    if (state.startsWith("tiktok|")) {
+      targetUrl = appScriptUrl + "?platform=tiktok&" + params.toString();
+    } else if (state.startsWith("linkedin|")) {
+      targetUrl = appScriptUrl + "?platform=linkedin&" + params.toString();
+    }
+
+    if (!targetUrl) {
+      document.getElementById("msg").textContent = "Unknown callback state. Missing or invalid state.";
+    } else {
+      document.getElementById("msg").textContent = "Redirecting to Apps Script...";
+      window.location.replace(targetUrl);
+    }
+  </script>
+</body>
+</html>
