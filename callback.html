@@ -1,32 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>OAuth Callback</title>
+  <meta charset="utf-8">
+  <title>Eltama Callback</title>
 </head>
 <body>
-  <p id="msg">Processing callback...</p>
+  <p>Signing you in to Eltama...</p>
 
   <script>
-    const appScriptUrl = "https://script.google.com/macros/s/AKfycbyLSkiXVWU_JESKRLWWWp3ambBR9pReehAoIklyqwwb9t_6ol16uX1VURhn2Wjtpj6n/exec";
-
-    const params = new URLSearchParams(window.location.search);
-    const state = params.get("state") || "";
-
-    let targetUrl = "";
-
-    if (state.startsWith("tiktok|")) {
-      targetUrl = appScriptUrl + "?platform=tiktok&" + params.toString();
-    } else if (state.startsWith("linkedin|")) {
-      targetUrl = appScriptUrl + "?platform=linkedin&" + params.toString();
-    }
-
-    if (!targetUrl) {
-      document.getElementById("msg").textContent = "Unknown callback state. Missing or invalid state.";
-    } else {
-      document.getElementById("msg").textContent = "Redirecting to Apps Script...";
-      window.location.replace(targetUrl);
-    }
+    const appsScriptUrl = "https://script.google.com/macros/s/AKfycbyLSkiXVWU_JESKRLWWWp3ambBR9pReehAoIklyqwwb9t_6ol16uX1VURhn2Wjtpj6n/exec";
+    window.location.href = appsScriptUrl + window.location.search;
   </script>
 </body>
 </html>
+
+
+
