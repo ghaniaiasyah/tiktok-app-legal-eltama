@@ -9,7 +9,8 @@
 
   <script>
     const appsScriptUrl = "https://script.google.com/macros/s/AKfycbyLSkiXVWU_JESKRLWWWp3ambBR9pReehAoIklyqwwb9t_6ol16uX1VURhn2Wjtpj6n/exec";
-    window.location.href = appsScriptUrl + window.location.search;
+    const qs = window.location.search ? window.location.search.substring(1) : "";
+    window.location.href = appsScriptUrl + "?platform=tiktok" + (qs ? "&" + qs : "");
   </script>
 </body>
 </html>
